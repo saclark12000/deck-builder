@@ -1,0 +1,11 @@
+<p><button (click)="generateNewDeck()">New Deck</button></p>
+<p><button (click)="shuffleDeck(this.deck)">Shuffle</button></p>
+<p><button (click)="dealCard(this.deck)">Deal</button></p>
+
+<ul>
+  <li> {{deck.shuffled ? 'Shuffled Deck' : 'Unshuffled Deck'}} </li>
+  <li> {{deck.full ? 'Full Deck' : 'Partial Deck - '+this.deck.cards.length}} </li>
+  <li *ngFor="let card of deck.cards">
+    {{card.suit}} - {{card.value}}
+  </li>
+</ul>
