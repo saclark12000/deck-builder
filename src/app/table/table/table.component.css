@@ -1,0 +1,23 @@
+.players{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.player{
+  padding: 10px;
+  margin: 10px;
+  border-right: 1px dashed black;
+  border-top: 1px dashed black;
+}
+
+.deck{
+  display: grid;
+  grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7% 7%;
+}
+
+.card{
+  text-align: center;
+  margin: 3px;
+  border: 1px solid;
+  padding: 5px;
+}

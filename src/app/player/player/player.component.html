@@ -1,0 +1,10 @@
+<h2>Player {{ player.playerId }} </h2>
+
+<p><button (click)="drawCard(this.deck, this.player)">Draw Card</button></p>
+<h3>
+  <ul>
+    <li *ngFor="let card of player.hand.cards" >
+      {{ card.suit }} - {{ card.value }}
+    </li>
+  </ul>
+</h3>

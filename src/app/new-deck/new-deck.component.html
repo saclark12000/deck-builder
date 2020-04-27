@@ -1,11 +1,25 @@
 <p><button (click)="generateNewDeck()">New Deck</button></p>
-<p><button (click)="shuffleDeck(this.deck)">Shuffle</button></p>
+<p><button (click)="shuffleDeck()">Shuffle</button></p>
 <p><button (click)="dealCard(this.deck)">Deal</button></p>
+<p><button (click)="dealCard(this.deck, this.player)">Build Player Hand</button></p>
 
-<ul>
-  <li> {{deck.shuffled ? 'Shuffled Deck' : 'Unshuffled Deck'}} </li>
-  <li> {{deck.full ? 'Full Deck' : 'Partial Deck - '+this.deck.cards.length}} </li>
-  <li *ngFor="let card of deck.cards">
-    {{card.suit}} - {{card.value}}
-  </li>
-</ul>
+<div class="card-display">
+  <div class="deck">
+    <ul>
+      <li><h2>Deck</h2></li>
+      <li> {{deck.shuffled ? 'Shuffled Deck' : 'Unshuffled Deck'}} </li>
+      <li> {{deck.full ? 'Full Deck' : 'Partial Deck - '+this.deck.cards.length}} </li>
+      <li *ngFor="let card of deck.cards">
+        {{card.suit}} - {{card.value}}
+      </li>
+    </ul>
+  </div>
+  <div class="player">
+    <ul>
+      <li><h2>Player</h2></li>
+      <li *ngFor="let card of player.hand.cards">
+        {{card.suit}} - {{card.value}}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<p>Table</p>
+<p><button (click)="tableProps()">Log Table Properties</button></p>
+<p><button (click)="addPlayer()">Add Player</button></p>
+<p><button (click)="shuffleDeck()">Shuffle Deck</button></p>
+<div id="table-container">
+  <div class="deck-container">
+    <p> No of Cards in Deck : {{table.deck.cards.length}} </p>
+    <div class="deck">
+      <div class="card" *ngFor="let card of table.deck.cards" [attr.border-color]="'blue'">
+        {{card.suit}} - {{card.value}}
+      </div>
+    </div>
+  </div>
+  <div class="players">
+    <div  *ngFor="let player of table.players" class="player" [attr.id]="'player' + player.playerId">
+      Player : {{ player.playerId }}
+      <app-player
+        [player]="table.players[player.playerId]"
+        [deck]="table.deck">
+      </app-player>
+    </div>
+  </div>
+</div>
