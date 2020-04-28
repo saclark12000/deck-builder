@@ -1,9 +1,13 @@
 <h2>Player {{ player.playerId }} </h2>
-
-<p><button (click)="drawCard(this.deck, this.player)">Draw Card</button></p>
+<p><button (click)="showPlayer()">Who Am I</button></p>
+<p><button (click)="draw()">Draw Card</button></p>
+<p>
+  <input type="number" #dealAmount>
+  <button (click)="deal(dealAmount.value)">Deal</button>
+</p>
 <h3>
   <ul>
-    <li *ngFor="let card of player.hand.cards" >
+    <li *ngFor="let card of player.hand.cards">
       {{ card.suit }} - {{ card.value }}
     </li>
   </ul>

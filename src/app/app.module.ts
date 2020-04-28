@@ -3,14 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewDeckComponent } from './new-deck/new-deck.component';
 import { TableComponent } from './table/table/table.component';
 import { PlayerComponent } from './player/player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewDeckComponent,
     TableComponent,
     PlayerComponent,
   ],
@@ -20,6 +18,6 @@ import { PlayerComponent } from './player/player/player.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [NewDeckComponent, PlayerComponent]
+  exports: [PlayerComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@
   <div class="deck-container">
     <p> No of Cards in Deck : {{table.deck.cards.length}} </p>
     <div class="deck">
-      <div class="card" *ngFor="let card of table.deck.cards" [attr.border-color]="'blue'">
+      <div class="card" *ngFor="let card of table.deck.cards">
         {{card.suit}} - {{card.value}}
       </div>
     </div>
@@ -16,7 +16,9 @@
       Player : {{ player.playerId }}
       <app-player
         [player]="table.players[player.playerId]"
-        [deck]="table.deck">
+        [deck]="table.deck"
+        (drawCard)="drawCard($event)"
+        (dealCards)="dealCards($event)">
       </app-player>
     </div>
   </div>

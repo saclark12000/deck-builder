@@ -25,7 +25,15 @@ export class TableComponent implements OnInit {
   }
 
   shuffleDeck(): void {
-    this.table.deck = this.deckActions.shuffleDeck(this.table.deck);
+    this.deckActions.shuffleDeck(this.table);
+  }
+
+  drawCard(targetPlayer: models.Player){
+    this.deckActions.dealCard(this.table, targetPlayer)
+  }
+
+  dealCards(amount:number){
+    this.deckActions.dealMultipleCards(this.table, amount)
   }
 
 }
