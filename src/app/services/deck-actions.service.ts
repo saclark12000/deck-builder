@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as models from '../models/index.model';
+import { Guid } from 'guid-typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class DeckActionsService {
     let returnArr: models.Deck = new models.Deck();
     s.forEach( suit => {
       for (let value = 0; value <= v; value++){
-        returnArr.cards.push({"suit": suit, "value": value});
+        returnArr.cards.push({cardId: Guid.create(), "suit": suit, "value": value});
       }
     })
     return returnArr;
@@ -40,9 +41,11 @@ export class DeckActionsService {
   }
 
   dealCard(table:models.Table, targetPlayer: models.Player): void {
+    const targetIndex = table.players.findIndex(player => player.playerId === targetPlayer.playerId);
+
     table.deck.selectedCard = table.deck.cards.shift();
-    table.players[targetPlayer.playerId].hand.cards = [
-      ...table.players[targetPlayer.playerId].hand.cards,
+    table.players[targetIndex].hand.cards = [
+      ...table.players[targetIndex].hand.cards,
       table.deck.selectedCard
     ]
   }
@@ -65,4 +68,26 @@ export class DeckActionsService {
       }
     }
   }
+
+  discardCard(table:models.Table, targetPlayer: models.Player, targetCard: models.Card): void {
+    console.log(table, targetPlayer, targetCard);
+    const targetPlayerIndex = table.players.findIndex(player => player.playerId === targetPlayer.playerId);
+    const targetCardIndex = table.players[targetPlayerIndex].hand.cards.findIndex(card => card.cardId === targetCard.cardId);
+
+
+    table.deck.discards = [
+      ...table.deck.discards,
+      targetCard
+    ]
+
+    table.players[targetPlayerIndex].hand.cards = [
+      ...table.players[targetPlayerIndex].hand.cards.slice(0,targetCardIndex),
+      ...table.players[targetPlayerIndex].hand.cards.slice(targetCardIndex+1)
+    ]
+  }
+
+  discardMultipleCards(table:models.Table, targetPlayer: models.Player, targetCards: Array<models.Card>): void{
+    targetCards.forEach(card => this.discardCard(table, targetPlayer, card))
+  }
+
 }

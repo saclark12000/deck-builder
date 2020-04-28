@@ -24,6 +24,10 @@ export class TableComponent implements OnInit {
     this.table.players.push(this.playerActions.generatePlayer(this.table));
   }
 
+  removePlayer(targetPlayer: models.Player) {
+    this.playerActions.removePlayer(this.table, targetPlayer);
+  }
+
   shuffleDeck(): void {
     this.deckActions.shuffleDeck(this.table);
   }
@@ -34,6 +38,10 @@ export class TableComponent implements OnInit {
 
   dealCards(amount:number){
     this.deckActions.dealMultipleCards(this.table, amount)
+  }
+
+  discard(targets: {targetPlayer: models.Player, targetCard: models.Card}){
+    this.deckActions.discardCard(this.table, targets.targetPlayer, targets.targetCard)
   }
 
 }

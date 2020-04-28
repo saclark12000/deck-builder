@@ -1,4 +1,7 @@
+import { Guid } from "guid-typescript";
+
 export class Card {
+  cardId: Guid;
   suit: string = 'None';
   value: number = -1;
 };
@@ -12,7 +15,7 @@ export class Deck {
 }
 
 export class Player {
-  playerId: number = 0;
+  playerId: Guid;
   hand: Hand = new Hand();
 }
 

@@ -1,14 +1,15 @@
-<h2>Player {{ player.playerId }} </h2>
+<h1>Player</h1>
+<h4>{{ player.playerId }} </h4>
 <p><button (click)="showPlayer()">Who Am I</button></p>
+<p><button (click)="exit()">Quit</button></p>
 <p><button (click)="draw()">Draw Card</button></p>
 <p>
   <input type="number" #dealAmount>
   <button (click)="deal(dealAmount.value)">Deal</button>
 </p>
 <h3>
-  <ul>
-    <li *ngFor="let card of player.hand.cards">
-      {{ card.suit }} - {{ card.value }}
-    </li>
-  </ul>
+    <div *ngFor="let card of player.hand.cards">
+      {{ card.suit }} - {{ card.value }} -
+      <button (click)="discard(card)">Discard</button>
+    </div>
 </h3>

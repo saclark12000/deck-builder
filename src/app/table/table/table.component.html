@@ -10,15 +10,22 @@
         {{card.suit}} - {{card.value}}
       </div>
     </div>
+    <p> No of Cards in Discard : {{table.deck.discards.length}} </p>
+    <div class="deck">
+      <div class="card" *ngFor="let card of table.deck.discards">
+        {{card.suit}} - {{card.value}}
+      </div>
+    </div>
   </div>
   <div class="players">
-    <div  *ngFor="let player of table.players" class="player" [attr.id]="'player' + player.playerId">
-      Player : {{ player.playerId }}
+    <div  *ngFor="let player of table.players" class="player" [attr.id]="'player' + player.playerId.toString()">
       <app-player
-        [player]="table.players[player.playerId]"
+        [player]="player"
         [deck]="table.deck"
         (drawCard)="drawCard($event)"
-        (dealCards)="dealCards($event)">
+        (dealCards)="dealCards($event)"
+        (discardCard)="discard($event)"
+        (removePlayer)="removePlayer($event)">
       </app-player>
     </div>
   </div>
